@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+source ./.env
+
 OUTPUT=$(./run.sh $@)
 
-aoc submit --year 2024 --day $1 $2 $OUTPUT
+echo "# OUTPUT:"
+echo $OUTPUT
+
+aoc submit --year $YEAR --day $1 $2 $OUTPUT

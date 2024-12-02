@@ -4,6 +4,8 @@
 # Usage: ./generate_module.sh <day>
 # Example: ./generate_module.sh 1
 
+source ./.env
+
 # check if the day is given
 if [ -z "$1" ]; then
     echo "Usage: ./generate_module.sh <day>"
@@ -28,8 +30,10 @@ if [ ! -d "src/days/day_$(printf "%02d" "$1")" ]; then
     mkdir -p "src/days/day_$(printf "%02d" "$1")"
 
     # create the part1.py and part2.py files containing template.py
-    cp template.py "src/days/day_$(printf "%02d" "$1")/part1.py"
-    cp template.py "src/days/day_$(printf "%02d" "$1")/part2.py"
+    for PART in $(seq 1 2);
+    do
+        cp template.py "src/days/day_$(printf "%02d" "$1")/part${PART}.py"
+    done
 
     # create the __init__.py file
     touch "src/days/day_$(printf "%02d" "$1")/__init__.py"
@@ -40,4 +44,4 @@ if [ ! -d "inputs" ]; then
 fi
 
 # use aoc cli to download just the input to inputs/day_{n:02d}.txt
-aoc download --year 2024 --day "$1" --input-only --input-file "inputs/day_$(printf "%02d" "$1").txt"
+aoc download --year $YEAR --day "$1" --input-only --input-file "inputs/day_$(printf "%02d" "$1").txt"
