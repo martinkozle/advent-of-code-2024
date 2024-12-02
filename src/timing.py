@@ -2,7 +2,7 @@ import time
 from collections.abc import Callable
 from functools import wraps
 
-from src.printing import eprint
+from src.print import eprint
 
 
 def timing[**P, O](f: Callable[P, O]) -> Callable[P, O]:
