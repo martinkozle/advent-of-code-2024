@@ -1,6 +1,5 @@
-import sys
-
 from src.parse import parse_line_ints
+from src.prep import run_with_prep
 from src.timing import timing
 
 
@@ -31,6 +30,4 @@ def main(inp: str) -> None:
 
 
 if __name__ == "__main__":
-    sys.setrecursionlimit(2**31 - 1)
-    sys.set_int_max_str_digits(2**31 - 1)
-    main(sys.stdin.read().strip())
+    run_with_prep(main)
