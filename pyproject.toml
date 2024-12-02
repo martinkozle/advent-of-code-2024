@@ -51,3 +51,4 @@ select = [
     "LOG",
     "RUF",
 ]
+ignore = ["PLR2004"]
