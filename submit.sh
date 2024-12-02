@@ -1,9 +1,10 @@
 #!/usr/bin/env sh
 
-source ./.env
+# shellcheck source=/dev/null
+. ./.env
 
-OUTPUT=$(./run.sh $@)
+OUTPUT=$(./run.sh "$@")
 
-echo $OUTPUT
+echo "$OUTPUT"
 
-aoc submit --year $YEAR --day $1 $2 $OUTPUT
+aoc submit --year "$YEAR" --day "$1" "$2" "$OUTPUT"
