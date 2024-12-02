@@ -12,7 +12,7 @@ fi
 
 OUTPUT=$(python -m src.days.day_${DAY}.part${PART} < $INPUT)
 
-echo "# OUTPUT:"
+echo "# OUTPUT:" &> /dev/stderr
 echo $OUTPUT
 
 if [ ! -d "outputs" ]; then
@@ -25,8 +25,8 @@ OUTPUT_FILE="outputs/day_${DAY}.part${PART}.txt"
 if [ "$INPUT" != "/dev/stdin" ] && [ -f "$OUTPUT_FILE" ]; then
     PREVIOUS_OUTPUT=$(cat $OUTPUT_FILE)
     if [ "$OUTPUT" != "$PREVIOUS_OUTPUT" ]; then
-        echo "# Output differs from previous output:"
-        echo $PREVIOUS_OUTPUT
+        echo "# Output differs from previous output:" &> /dev/stderr
+        echo $PREVIOUS_OUTPUT &> /dev/stderr
     fi
 fi
 
