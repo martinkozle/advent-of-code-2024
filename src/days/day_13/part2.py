@@ -1,3 +1,4 @@
+import re
 from dataclasses import dataclass
 
 from src.prep import run_with_prep
@@ -31,32 +32,22 @@ def solve(machine: Machine) -> int:
 
 @timing
 def main(inp: str) -> None:
-    machines_str = inp.split("\n\n")
-    machines: list[Machine] = []
-    for machine_str in machines_str:
-        button_a_str, button_b_str, prize_str = machine_str.split("\n")
-        ax, ay = [
-            int(coord_str.split("+")[1])
-            for coord_str in button_a_str.split(":")[1].split(", ")
-        ]
-        bx, by = [
-            int(coord_str.split("+")[1])
-            for coord_str in button_b_str.split(":")[1].split(", ")
-        ]
-        px, py = [
-            int(coord_str.split("=")[1])
-            for coord_str in prize_str.split(":")[1].split(", ")
-        ]
-        machines.append(
-            Machine(
-                ax=ax,
-                ay=ay,
-                bx=bx,
-                by=by,
-                px=px + 10000000000000,
-                py=py + 10000000000000,
-            ),
+    matches = re.findall(
+        r"Button A: X\+(\d+), Y\+(\d+)\nButton B: X\+(\d+), Y\+(\d+)\n"
+        r"Prize: X=(\d+), Y=(\d+)",
+        inp,
+    )
+    machines = [
+        Machine(
+            ax=ax,
+            ay=ay,
+            bx=bx,
+            by=by,
+            px=10000000000000 + px,
+            py=10000000000000 + py,
         )
+        for ax, ay, bx, by, px, py in (map(int, match) for match in matches)
+    ]
 
     print(sum(solve(machine) for machine in machines))
 
