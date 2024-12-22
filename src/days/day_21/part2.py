@@ -104,8 +104,6 @@ def group_key_pairs(keys: Iterator[str]) -> Iterator[tuple[str, str]]:
 
 class Solver:
     def __init__(self) -> None:
-        self.cache: MutableMapping[tuple[str, str, int], list[str]] = {}
-        self.single_cache: MutableMapping[tuple[str, str], str] = {}
         self.human_len_cache: MutableMapping[tuple[str, str, int], int] = {}
 
     def from_to_direction_key_human_len(
