@@ -14,3 +14,7 @@ inputs/
 
 # Outputs
 outputs/
+
+# pyvis output
+lib/
+*_graph.html
