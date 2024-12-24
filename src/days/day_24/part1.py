@@ -59,8 +59,6 @@ def main(inp: str) -> None:
     )
     solver = Solver(gates, start_values)
     values = [solver.rec(z_wire) for z_wire in z_wires]
-    if not all(value is not None for value in values):
-        raise RuntimeError("Unexpected state")
     output = int("".join("1" if value else "0" for value in values), 2)
     print(output)
 
